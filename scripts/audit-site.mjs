@@ -24,6 +24,11 @@ for (const viewport of viewports) {
     for (const image of await page.locator('img').all()) {
       await image.scrollIntoViewIfNeeded();
     }
+    await page.waitForFunction(
+      () => [...document.images].every((image) => image.complete && image.naturalWidth > 0),
+      undefined,
+      { timeout: 15000 }
+    ).catch(() => {});
     await page.evaluate(() => window.scrollTo(0, 0));
     const metrics = await page.evaluate(() => {
       const documentWidth = document.documentElement.scrollWidth;
