@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+import { links } from '../data/site';
+
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['social-links', { compact }]}>
+  <a href={links.email}><Icon name="mail" /> <span>Email</span></a>
+  <a href={links.scholar} target="_blank" rel="noreferrer"><Icon name="scholar" /> <span>Scholar</span></a>
+  <a href={links.github} target="_blank" rel="noreferrer"><Icon name="github" /> <span>GitHub</span></a>
+  <a href={links.linkedin} target="_blank" rel="noreferrer"><Icon name="linkedin" /> <span>LinkedIn</span></a>
+</div>

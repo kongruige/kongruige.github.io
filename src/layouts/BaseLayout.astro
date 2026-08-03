@@ -1,0 +1,70 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = '/images/ruige-kong-seattle.jpg' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title === 'Ruige Kong' ? title : `${title}, Ruige Kong`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Ruige Kong',
+  url: Astro.site?.toString(),
+  image: new URL(image, Astro.site),
+  jobTitle: 'PhD Researcher in Scientific Machine Learning and Control',
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'University of Washington'
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'University of Cambridge'
+  },
+  email: 'mailto:rk684@uw.edu',
+  sameAs: [
+    'https://scholar.google.com/citations?hl=en&user=e7V0OQQAAAAJ',
+    'https://github.com/kongruige',
+    'https://www.linkedin.com/in/ruige-kong-6685611a3/'
+  ],
+  knowsAbout: ['Scientific machine learning', 'Dynamical systems', 'Fluid mechanics', 'Reinforcement learning', 'Control theory']
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f3efe6" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    <title>{fullTitle}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

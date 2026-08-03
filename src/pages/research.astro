@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import { links } from '../data/site';
+---
+
+<BaseLayout title="Research" description="Ruige Kong's research in reliable surrogate modeling, learning-based flow control, scientific machine learning, and wildfire prediction." image="/images/cylinder-mechanism.png">
+  <PageIntro eyebrow="Research" title="Reliable learning for physical dynamics and control." description="I study when neural surrogates preserve the state evolution, local sensitivities, and closed-loop behavior required for model-based control." />
+
+  <section class="research-lead shell" aria-label="Research agenda">
+    <div class="research-question">
+      <p>A central question is when a learned dynamics model is reliable enough for controller design.</p>
+    </div>
+    <div class="research-agenda">
+      <p>Low state-prediction error is not sufficient for control. A useful surrogate must also preserve action-conditioned dynamics and the local sensitivities used by an optimizer or policy.</p>
+      <p>I study these requirements through neural operators, model-based reinforcement learning, direct numerical simulation, and controlled perturbation tests.</p>
+    </div>
+  </section>
+
+  <article class="project-deep-dive section" id="audited-surrogates">
+    <div class="shell">
+      <div class="project-header">
+        <div>
+          <p class="eyebrow">Current work, manuscript in preparation</p>
+          <h2>Audited surrogate gradients for reliable model-based flow control</h2>
+        </div>
+        <p class="project-collab">With <a href={links.fresca} target="_blank" rel="noreferrer">Stefania Fresca</a><br />University of Washington</p>
+      </div>
+
+      <div class="project-body-grid">
+        <div class="project-statement">
+          <p class="eyebrow">The question</p>
+          <h3>Accurate state prediction does not imply a faithful control Jacobian.</h3>
+        </div>
+        <div class="prose">
+          <p>Neural surrogates can reduce the cost of trajectory optimization, but controller design depends on derivatives with respect to the action. These derivatives can be wrong even when one-step state errors are small.</p>
+          <p>I compare automatic-differentiation gradients from the surrogate with paired finite-difference sensitivities from direct numerical simulation. I then distill a compact feedback law, refine it through the surrogate, and evaluate it in the original solver.</p>
+        </div>
+      </div>
+
+      <figure class="study-figure study-figure-wide">
+        <img src="/images/surrogate-horizon.png" alt="Physical flow fields, surrogate predictions, and errors shown at the initial state, training boundary, and a later diagnostic time" width="1700" height="1403" loading="lazy" />
+        <figcaption>Teacher-forced predictions remain accurate near the training horizon, while the autoregressive rollout later diverges from DNS. The distinction bounds which dynamical claims the surrogate can support.</figcaption>
+      </figure>
+
+      <div class="method-steps" aria-label="Research workflow">
+        <div><span>01</span><h4>Perturb</h4><p>Estimate action sensitivities with paired finite-difference DNS trajectories.</p></div>
+        <div><span>02</span><h4>Audit</h4><p>Compare gradient sign, direction, and magnitude across relevant horizons.</p></div>
+        <div><span>03</span><h4>Distill</h4><p>Extract an interpretable feedback law from the audited gradient structure.</p></div>
+        <div><span>04</span><h4>Refine</h4><p>Optimize through the differentiable surrogate within the supported regime.</p></div>
+        <div><span>05</span><h4>Validate</h4><p>Evaluate closed-loop performance and falsification controls in DNS.</p></div>
+      </div>
+
+      <div class="figure-with-context">
+        <div>
+          <p class="eyebrow">Physical test</p>
+          <h3>The audited gradient identifies a useful feedback phase.</h3>
+          <p>The local action gradient predicts a feedback phase that lowers the objective in direct numerical simulation. A falsification phase produces the opposite response, providing a controlled test of the inferred mechanism.</p>
+        </div>
+        <figure class="study-figure">
+          <img src="/images/controller-phase.png" alt="A phase sweep and closed-loop physical simulation comparing a controller extracted from audited gradients with a falsification phase" width="1600" height="1588" loading="lazy" />
+          <figcaption>The phase selected from the audited gradient lowers the physical objective over the evaluation horizon.</figcaption>
+        </figure>
+      </div>
+
+      <div class="project-note">
+        <span class="note-label">Research principle</span>
+        <p>Local Jacobian fidelity and long-horizon rollout stability are distinct properties. I evaluate them separately because they support different uses of a surrogate.</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="section section-tint" id="scientific-ml">
+    <div class="shell topic-layout">
+      <div class="topic-index">02</div>
+      <div class="topic-title">
+        <p class="eyebrow">Scientific machine learning</p>
+        <h2>Inference and surrogate modeling for physical systems</h2>
+      </div>
+      <div class="topic-copy prose">
+        <p>At Cambridge, I studied nonlocal state inference in neural PDE surrogates, including the reconstruction of latent physical variables from partial and spatially coarsened observations.</p>
+        <p>I now work with neural operators, reduced-order representations, and physics-informed learning to connect high-dimensional simulation with estimation and control.</p>
+        <ul class="inline-topics">
+          <li>Neural operators</li><li>PDE surrogates</li><li>Representation learning</li><li>Model reduction</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell wildfire-study" id="wildfire">
+    <div class="wildfire-header">
+      <div>
+        <p class="eyebrow">Environmental prediction</p>
+        <h2>Interpretable deep learning for wildfire spread</h2>
+      </div>
+      <div class="prose">
+        <p>We trained Autoencoder, ResNet, U-Net, and Swin-UNet architectures for next day fire-mask segmentation using nearly a decade of remote sensing data from California.</p>
+        <p>We evaluated predictive skill under class imbalance, computational cost, and data efficiency. SHAP, Grad-CAM, and Integrated Gradients were used to compare global and spatial feature attribution.</p>
+        <div class="inline-links">
+          <a class="text-link" href={links.wildfire} target="_blank" rel="noreferrer">Read the paper <Icon name="external" size={16} /></a>
+          <a class="text-link" href={links.wildfireCode} target="_blank" rel="noreferrer">Code and data <Icon name="external" size={16} /></a>
+        </div>
+      </div>
+    </div>
+
+    <figure class="study-figure wildfire-dataset-figure">
+      <img src="/images/wildfire-dataset.png" alt="Five remote sensing samples with twelve input fields, a previous fire mask, and the next day fire mask" width="1600" height="800" loading="lazy" />
+      <figcaption>Each row is one sample. The inputs include weather, terrain, vegetation, population density, energy release, and the previous fire mask. The final column is the next day fire mask. Figure from the published paper.</figcaption>
+    </figure>
+
+    <div class="wildfire-result-grid">
+      <figure class="study-figure">
+        <img src="/images/wildfire-shap.png" alt="SHAP feature importance rankings for XGBoost, Autoencoder, ResNet, U-Net, and Swin-UNet wildfire models" width="1400" height="1439" loading="lazy" />
+        <figcaption>Mean absolute SHAP values show that each architecture relies on a different mix of environmental inputs. Figure from the published paper.</figcaption>
+      </figure>
+      <div class="wildfire-findings">
+        <p class="eyebrow">Main results</p>
+        <h3>U-Net and Swin-UNet achieved the highest AUC-PR.</h3>
+        <p>Swin-UNet reached a mean AUC-PR of 0.2803 and U-Net reached 0.2739. Both outperformed the Autoencoder and ResNet baselines on the highly imbalanced segmentation task.</p>
+        <p>The attribution profiles differed despite similar aggregate performance. U-Net emphasized population density and the previous fire mask, while Swin-UNet emphasized vegetation, humidity, and the previous fire mask.</p>
+        <p>The result shows why predictive metrics and attribution analysis should be considered together when comparing architectures.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="confidential-note shell" aria-label="Additional research">
+    <p class="eyebrow">Additional research</p>
+    <h2>Machine learning for satellite dynamics</h2>
+    <p>I also contribute to the FISICA project on machine learning for satellite dynamics. Further details are limited due to confidentiality.</p>
+  </section>
+</BaseLayout>

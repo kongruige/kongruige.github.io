@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import { links } from '../data/site';
+---
+
+<BaseLayout title="Publications" description="Publications and manuscripts by Ruige Kong in scientific machine learning, flow control, and environmental prediction.">
+  <PageIntro eyebrow="Publications" title="Research papers and current work." description="Publications and manuscripts on flow control, scientific machine learning, and environmental prediction." />
+
+  <section class="publication-list shell">
+    <div class="publication-group">
+      <div class="publication-group-label"><span>2026</span><span>Manuscript in preparation</span></div>
+      <article class="publication-row">
+        <div class="pub-type">Manuscript</div>
+        <div>
+          <h2>Audited Surrogate Gradients for Reliable Model-Based Flow Control</h2>
+          <p class="authors"><strong>Ruige Kong</strong>, Stefania Fresca</p>
+          <p class="pub-summary">Audits automatic-differentiation gradients from neural flow surrogates against finite-difference sensitivities from direct numerical simulation, then tests distilled and optimized feedback laws in the original solver.</p>
+          <div class="pub-status"><span class="status-dot"></span> Manuscript in preparation</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="publication-group">
+      <div class="publication-group-label"><span>2025</span><span>Journal article</span></div>
+      <article class="publication-row">
+        <div class="pub-type">JGR: Machine Learning and Computation, 2(2)</div>
+        <div>
+          <h2><a href={links.wildfire} target="_blank" rel="noreferrer">Comparative and Interpretative Analysis of CNN and Transformer Models in Predicting Wildfire Spread Using Remote Sensing Data</a></h2>
+          <p class="authors">Yihang Zhou, <strong>Ruige Kong</strong>, Zhengsen Xu, Linlin Xu, Sibo Cheng</p>
+          <p class="pub-summary">Compares CNN and transformer architectures for next day wildfire segmentation under severe class imbalance. SHAP, Grad-CAM, and Integrated Gradients characterize architecture-dependent feature attribution.</p>
+          <p class="doi">DOI: 10.1029/2024JH000409</p>
+          <div class="pub-links">
+            <a href={links.wildfire} target="_blank" rel="noreferrer">Publisher <Icon name="external" size={15} /></a>
+            <a href={links.wildfireArxiv} target="_blank" rel="noreferrer">arXiv <Icon name="external" size={15} /></a>
+            <a href={links.wildfireCode} target="_blank" rel="noreferrer">Code and data <Icon name="external" size={15} /></a>
+          </div>
+          <details class="bibtex">
+            <summary>BibTeX</summary>
+            <pre><code>@article&#123;zhou2025wildfire,
+  title=&#123;Comparative and Interpretative Analysis of CNN and
+         Transformer Models in Predicting Wildfire Spread
+         Using Remote Sensing Data&#125;,
+  author=&#123;Zhou, Yihang and Kong, Ruige and Xu, Zhengsen and
+          Xu, Linlin and Cheng, Sibo&#125;,
+  journal=&#123;Journal of Geophysical Research:
+           Machine Learning and Computation&#125;,
+  volume=&#123;2&#125;,
+  number=&#123;2&#125;,
+  year=&#123;2025&#125;,
+  doi=&#123;10.1029/2024JH000409&#125;
+&#125;</code></pre>
+          </details>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="scholar-cta section-tint">
+    <div class="shell scholar-cta-inner">
+      <div><p class="eyebrow">Complete record</p><h2>Follow new work on Google Scholar.</h2></div>
+      <a class="button button-primary" href={links.scholar} target="_blank" rel="noreferrer">Google Scholar <Icon name="external" /></a>
+    </div>
+  </section>
+</BaseLayout>

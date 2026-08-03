@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+npm-debug.log*
+photos/
+Ruige_Kong_CV__Research_ (1).pdf

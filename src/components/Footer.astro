@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { links } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <p class="footer-kicker">I welcome research collaborations and technical conversations.</p>
+      <a class="footer-email" href={links.email}>rk684@uw.edu</a>
+    </div>
+    <div class="footer-links" aria-label="Profile links">
+      <a href={links.scholar} target="_blank" rel="noreferrer"><Icon name="scholar" /> Scholar</a>
+      <a href={links.github} target="_blank" rel="noreferrer"><Icon name="github" /> GitHub</a>
+      <a href={links.linkedin} target="_blank" rel="noreferrer"><Icon name="linkedin" /> LinkedIn</a>
+    </div>
+  </div>
+  <div class="shell footer-base">
+    <span>© {year} Ruige Kong</span>
+    <span>Seattle, Washington</span>
+  </div>
+</footer>

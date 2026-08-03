@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import { navItems, links } from '../data/site';
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => pathname.startsWith(href);
+---
+
+<header class="site-header" data-header>
+  <div class="header-inner shell">
+    <a class="wordmark" href="/" aria-label="Ruige Kong, home">
+      <span class="wordmark-mark">RK</span>
+      <span class="wordmark-name">Ruige Kong</span>
+    </a>
+
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation" data-menu-button>
+      <span class="menu-open"><Icon name="menu" size={22} /></span>
+      <span class="menu-close"><Icon name="close" size={22} /></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation" data-nav>
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+      <a class="nav-cv" href={links.cv} target="_blank">
+        CV <Icon name="download" size={15} />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector('[data-menu-button]');
+  const nav = document.querySelector('[data-nav]');
+
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('is-open', !open);
+    document.body.classList.toggle('menu-open', !open);
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    button?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+  }));
+</script>

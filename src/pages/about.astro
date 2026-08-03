@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Icon from '../components/Icon.astro';
+import { links } from '../data/site';
+---
+
+<BaseLayout title="About" description="About Ruige Kong, a PhD researcher in scientific machine learning and control at the University of Washington." image="/images/ruige-kong-sunset.jpg">
+  <PageIntro eyebrow="About" title="I study how machine learning can model and control physical systems." description="My work combines machine learning, scientific computing, fluid mechanics, and control." />
+
+  <section class="about-profile shell">
+    <figure class="about-photo">
+      <img src="/images/ruige-kong-sunset.jpg" alt="Ruige Kong by the water at sunset with the Olympic Mountains in the distance" width="1100" height="1467" />
+      <figcaption>Puget Sound, Washington</figcaption>
+    </figure>
+    <div class="about-copy prose">
+      <p class="lead-paragraph">I am a PhD student in Mechanical Engineering at the University of Washington, advised by <a href={links.fresca} target="_blank" rel="noreferrer">Prof. Stefania Fresca</a> and affiliated with the <a href={links.dynamicsAi} target="_blank" rel="noreferrer">AI Institute in Dynamic Systems</a>.</p>
+      <p>I develop neural surrogate models and reinforcement learning methods for high-dimensional flow control. My current work studies whether learned dynamics preserve the action sensitivities required for reliable controller extraction and optimization.</p>
+      <p>Before UW, I completed an MEng and BA in Information and Computer Engineering at the University of Cambridge. I studied nonlocal state inference in neural PDE surrogates and interpretable deep learning for wildfire prediction. I also completed research internships at the European Bioinformatics Institute and J.P. Morgan.</p>
+      <p>I enjoy moving between analysis, implementation, and physical validation. Outside research, I play badminton, hike, and explore the Pacific Northwest.</p>
+      <div class="about-actions">
+        <a class="button button-primary" href={links.cv} target="_blank">Download CV <Icon name="download" /></a>
+        <SocialLinks compact />
+      </div>
+    </div>
+  </section>
+
+  <section class="facts-section section-tint">
+    <div class="shell facts-grid">
+      <div><p class="eyebrow">Research home</p><h2>Seattle, Washington</h2><p>University of Washington<br />Department of Mechanical Engineering</p></div>
+      <div><p class="eyebrow">Languages</p><h2>English and Mandarin</h2><p>Native proficiency, with additional study in Cantonese, French, and Japanese.</p></div>
+      <div><p class="eyebrow">Away from the desk</p><h2>Badminton and the outdoors</h2><p>Former Cambridge University squad member and event organizer.</p></div>
+    </div>
+  </section>
+
+  <section class="section shell toolkit">
+    <div class="section-heading split-heading">
+      <div><p class="eyebrow">Technical toolkit</p><h2>Methods I work with.</h2></div>
+      <p>I select tools for the scientific question. This is a representative list.</p>
+    </div>
+    <div class="toolkit-grid">
+      <div><h3>Learning</h3><p>PyTorch, TensorFlow, Stable-Baselines3, scikit-learn, PyTorch Geometric</p></div>
+      <div><h3>Scientific computing</h3><p>NumPy, SciPy, MATLAB, Julia, numerical PDEs, reduced-order modeling</p></div>
+      <div><h3>Engineering</h3><p>Python, Git, Linux, Jupyter, ROS/ROS2, SQL, LaTeX</p></div>
+      <div><h3>Analysis and visualization</h3><p>Pandas, Matplotlib, Plotly, Seaborn, OpenCV, explainability methods</p></div>
+    </div>
+  </section>
+</BaseLayout>

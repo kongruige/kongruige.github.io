@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="Page not found" description="The requested page could not be found.">
+  <section class="not-found shell">
+    <p class="eyebrow">404</p>
+    <h1>This path wandered off course.</h1>
+    <p>The page you’re looking for does not exist or may have moved.</p>
+    <a class="button button-primary" href="/">Return home <Icon name="arrow" /></a>
+  </section>
+</BaseLayout>

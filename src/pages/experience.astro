@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { links } from '../data/site';
+
+const experiences = [
+  {
+    dates: '2025 to present', role: 'Graduate Research Assistant', org: 'SCiDaMa Group, University of Washington', location: 'Seattle, USA',
+    copy: 'Develop neural surrogate models and reinforcement learning methods for high-dimensional flow control. Audit learned action sensitivities and validate controllers in direct numerical simulation.',
+    tags: ['Scientific ML', 'Flow control', 'Reinforcement learning']
+  },
+  {
+    dates: '2023 to 2025', role: 'Machine Learning Researcher', org: 'University of Cambridge', location: 'Cambridge, UK',
+    copy: 'Studied nonlocal state inference in neural PDE surrogates, with emphasis on reconstructing latent variables from partial and spatially coarsened observations.',
+    tags: ['Physics-informed ML', 'PDEs', 'Inference']
+  },
+  {
+    dates: '2023 to 2025', role: 'Deep Learning Researcher', org: 'Imperial College London, Data Science Institute', location: 'Cambridge and London, UK',
+    copy: 'Compared CNN and transformer architectures for next day wildfire segmentation. Used SHAP, Grad-CAM, and Integrated Gradients to analyze feature attribution.',
+    tags: ['Computer vision', 'Explainable AI', 'Remote sensing']
+  },
+  {
+    dates: 'Summer 2024', role: 'AI and Data Science, Quantitative Research Intern', org: 'J.P. Morgan, Quantitative Solutions', location: 'London, UK',
+    copy: 'Built transformer research pipelines to track sentiment in financial news and forecast stock returns.',
+    tags: ['Transformers', 'NLP', 'Quantitative research']
+  },
+  {
+    dates: 'Summer 2023', role: 'Deep Learning Intern', org: 'European Bioinformatics Institute', location: 'Hinxton, UK',
+    copy: 'Built synthetic data simulations and trained CNN and transformer models for biological sequence classification with the Goldman group.',
+    tags: ['Bioinformatics', 'Sequence models', 'Synthetic data']
+  },
+  {
+    dates: '2023', role: 'Dry-Lab Researcher', org: 'Cambridge iGEM Team', location: 'Cambridge, UK',
+    copy: 'Designed and modeled a synthetic gene expression circuit in Julia for a Gold Medal iGEM project.',
+    tags: ['Computational biology', 'Julia', 'Systems modeling']
+  }
+];
+---
+
+<BaseLayout title="Experience" description="Research, industry, education, and selected achievements of Ruige Kong.">
+  <PageIntro eyebrow="Experience" title="Research across engineering and science." description="Academic research, research internships, education, and selected awards." />
+
+  <section class="experience-section shell">
+    <div class="section-side-title"><p class="eyebrow">Research and industry</p><h2>Experience</h2></div>
+    <div class="timeline">
+      {experiences.map((item) => (
+        <article class="timeline-item">
+          <div class="timeline-date">{item.dates}</div>
+          <div class="timeline-body">
+            <h3>{item.role}</h3>
+            <p class="timeline-org">{item.org}<span>, {item.location}</span></p>
+            <p>{item.copy}</p>
+            <ul class="tag-list">{item.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="education-section section-tint">
+    <div class="shell experience-section">
+      <div class="section-side-title"><p class="eyebrow">Training</p><h2>Education</h2></div>
+      <div class="education-list">
+        <article>
+          <div class="degree-year">2025 to 2030</div>
+          <h3>PhD, Mechanical Engineering</h3>
+          <p class="timeline-org"><a href={links.uwMe} target="_blank" rel="noreferrer">University of Washington</a>, Seattle</p>
+          <p>AI Institute in Dynamic Systems. Research in scientific machine learning, reinforcement learning, flow control, and fluid mechanics.</p>
+        </article>
+        <article>
+          <div class="degree-year">2021 to 2025</div>
+          <h3>MEng and BA, Information and Computer Engineering</h3>
+          <p class="timeline-org"><a href={links.cambridge} target="_blank" rel="noreferrer">University of Cambridge</a>, Cambridge</p>
+          <p>Studied machine learning, computational science, mathematical methods, inference, control theory, and statistical signal processing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="awards-section shell section">
+    <div class="section-side-title"><p class="eyebrow">Selected recognition</p><h2>Awards</h2></div>
+    <div class="award-list">
+      <div><span>2024</span><p><strong>1st Place</strong>, AIGC Hackbridge UK Hackathon</p></div>
+      <div><span>2023</span><p><strong>2nd Place</strong>, Citadel European Datathon</p></div>
+      <div><span>2023</span><p><strong>Gold Medal</strong>, iGEM Synthetic Biology Competition</p></div>
+      <div><span>2023</span><p><strong>1st Place</strong>, AIGC Hackbridge UK Hackathon</p></div>
+      <div><span>2023</span><p><strong>Top 1%</strong>, IMC Quantitative Trading Competition</p></div>
+    </div>
+  </section>
+</BaseLayout>
