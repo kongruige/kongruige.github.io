@@ -15,10 +15,10 @@ export const links = {
 };
 
 export const navItems = [
-  { href: '/research/', label: 'Research' },
-  { href: '/publications/', label: 'Publications' },
-  { href: '/experience/', label: 'Experience' },
-  { href: '/about/', label: 'About' }
+  { href: '/#research', label: 'Research' },
+  { href: '/#publications', label: 'Publications' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#background', label: 'Background' }
 ];
 
 export const interests = [

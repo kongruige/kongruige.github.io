@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import { navItems, links } from '../data/site';
 
 const pathname = Astro.url.pathname;
-const isActive = (href: string) => pathname.startsWith(href);
+const isActive = (href: string) => !href.startsWith('/#') && pathname.startsWith(href);
 ---
 
 <header class="site-header" data-header>
@@ -20,7 +20,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 
     <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation" data-nav>
       {navItems.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+        <a href={item.href} aria-current={isActive(item.href) ? 'location' : undefined} data-section-link>{item.label}</a>
       ))}
       <a class="nav-cv" href={links.cv} target="_blank">
         CV <Icon name="download" size={15} />
@@ -45,4 +45,25 @@ const isActive = (href: string) => pathname.startsWith(href);
     nav?.classList.remove('is-open');
     document.body.classList.remove('menu-open');
   }));
+
+  if (window.location.pathname === '/') {
+    const sectionLinks = [...document.querySelectorAll('[data-section-link]')];
+    const sections = sectionLinks
+      .map((link) => document.querySelector(link.getAttribute('href')?.replace('/', '') || ''))
+      .filter((section): section is Element => section instanceof Element);
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      sectionLinks.forEach((link) => {
+        const active = link.getAttribute('href') === `/#${visible.target.id}`;
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, .1, .5] });
+
+    sections.forEach((section) => observer.observe(section));
+  }
 </script>
