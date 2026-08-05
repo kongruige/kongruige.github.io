@@ -18,7 +18,8 @@ export const navItems = [
   { href: '/#publications', label: 'Publications' },
   { href: '/#research', label: 'Research' },
   { href: '/#experience', label: 'Experience' },
-  { href: '/#background', label: 'Background' }
+  { href: '/#background', label: 'Background' },
+  { href: '/about/', label: 'About' }
 ];
 
 export const interests = [
