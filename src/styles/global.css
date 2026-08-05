@@ -94,7 +94,7 @@ h3 { line-height: 1.25; }
 .social-links.compact svg { width: 17px; height: 17px; }
 
 /* Home — Intro block */
-.intro { display: grid; grid-template-columns: 140px 1fr; gap: 2.5rem; padding-block: clamp(2.5rem, 5vw, 3.5rem); align-items: start; }
+.intro { display: grid; grid-template-columns: 140px 1fr minmax(220px, .55fr); gap: 2.5rem; padding-block: clamp(2.5rem, 5vw, 3.5rem); align-items: start; }
 .intro-photo { width: 140px; height: 175px; object-fit: cover; object-position: 52% center; filter: saturate(.82) contrast(1.02); }
 .intro-text h1 { margin-bottom: .3rem; font-family: var(--serif); font-size: 1.85rem; font-weight: 400; letter-spacing: -.02em; line-height: 1.15; }
 .intro-subtitle { margin-bottom: .15rem; color: var(--ink); font-size: .92rem; font-weight: 600; }
@@ -106,6 +106,7 @@ h3 { line-height: 1.25; }
 .intro-interests li { padding: .25rem .6rem; border: 1px solid var(--line); color: var(--muted); font-size: .68rem; }
 .intro-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .intro-links .button { min-height: 36px; }
+.intro-thesis { margin: 0; padding-top: .5rem; border-top: 2px solid var(--sage); color: var(--ink); font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.4; letter-spacing: -.015em; }
 .section-heading { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
 .section-heading h2 { max-width: 790px; margin-bottom: 0; font-size: clamp(2.2rem, 3.5vw, 3.55rem); }
 .split-heading { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, .7fr); align-items: end; gap: clamp(2rem, 7vw, 8rem); }
@@ -365,6 +366,7 @@ figcaption { margin-top: .85rem; color: var(--muted); font-size: .7rem; letter-s
   .primary-nav .nav-cv { justify-content: space-between; margin-top: 1.5rem; padding: .9rem 1rem; font-family: var(--sans); font-size: .85rem; }
   .intro { grid-template-columns: 1fr; }
   .intro-photo { width: 110px; height: 138px; }
+  .intro-thesis { border-top: 0; padding-top: 0; }
   .split-heading, .signal-grid, .research-lead, .project-header, .project-body-grid, .about-profile, .footer-grid { grid-template-columns: 1fr; }
   .split-heading { align-items: start; gap: 1.5rem; }
   .visual-label { right: 4.5rem; }
