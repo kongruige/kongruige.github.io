@@ -15,8 +15,8 @@ export const links = {
 };
 
 export const navItems = [
-  { href: '/#research', label: 'Research' },
   { href: '/#publications', label: 'Publications' },
+  { href: '/#research', label: 'Research' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#background', label: 'Background' }
 ];
