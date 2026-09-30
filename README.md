@@ -2,6 +2,10 @@
 
 A static academic portfolio built with Astro. The site presents research, publications, selected experience, and biographical information for Ruige Kong.
 
+## Repository guidance
+
+Start with [AGENT.md](AGENT.md) for architecture, research sources and statuses, content constraints, and validation. `CLAUDE.md` and `AGENTS.md` load the same guide for future assistant sessions.
+
 ## Local development
 
 ```bash
@@ -39,6 +43,7 @@ The generated deployment is in `dist/`. It can be served by GitHub Pages, Cloudf
 
 ## Updating content
 
+- Current manuscript titles, summaries, and journal/workshop statuses: `src/data/research.ts`
 - Shared profile links: `src/data/site.ts`
 - Homepage: `src/pages/index.astro`
 - Research: `src/pages/research.astro`

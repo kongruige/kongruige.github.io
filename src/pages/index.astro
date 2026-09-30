@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { flowControl, fieldInference, tmlrVenue, tmlrStatus } from '../data/research';
 import Icon from '../components/Icon.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { links, interests } from '../data/site';
@@ -74,12 +75,23 @@ const awards = [
 
       <div class="scan-publication-list">
         <article class="scan-publication">
-          <div class="scan-publication-year"><strong>2026</strong><span>In preparation</span></div>
+          <div class="scan-publication-year"><strong>{flowControl.year}</strong><span>Workshop accepted</span></div>
           <div>
-            <p class="record-kicker">Manuscript</p>
-            <h3>Audited Surrogate Gradients for Reliable Model-Based Flow Control</h3>
+            <p class="record-kicker">{flowControl.workshopVenue} · {flowControl.workshopStatus}</p>
+            <h3>{flowControl.title}</h3>
             <p class="authors"><strong>Ruige Kong</strong>, Stefania Fresca</p>
-            <p>Audits surrogate action gradients against finite-difference DNS sensitivities, then tests distilled and optimized feedback laws in the original solver.</p>
+            <p>{flowControl.summary}</p>
+            <p class="pub-summary">Journal manuscript: {tmlrStatus}.</p>
+          </div>
+        </article>
+
+        <article class="scan-publication">
+          <div class="scan-publication-year"><strong>{fieldInference.year}</strong><span>In preparation</span></div>
+          <div>
+            <p class="record-kicker">{tmlrVenue}</p>
+            <h3>{fieldInference.title}</h3>
+            <p>{fieldInference.summary}</p>
+            <p class="pub-summary">{tmlrStatus}.</p>
           </div>
         </article>
 
@@ -110,8 +122,8 @@ const awards = [
       <article class="research-list-item">
         <div class="research-list-meta"><span>Current work</span></div>
         <div>
-          <h3><a href="/research/#audited-surrogates">Audited surrogate gradients for reliable model-based flow control</a></h3>
-          <p>Comparing automatic-differentiation gradients from neural flow surrogates with finite-difference sensitivities from DNS, then validating feedback laws in the original solver.</p>
+          <h3><a href="/research/#audited-surrogates">{flowControl.title}</a></h3>
+          <p>{flowControl.summary}</p>
           <ul class="method-list" aria-label="Methods">
             <li>Neural operators</li>
             <li>Model-based control</li>
@@ -124,8 +136,8 @@ const awards = [
       <article class="research-list-item">
         <div class="research-list-meta"><span>Scientific ML</span></div>
         <div>
-          <h3><a href="/research/#scientific-ml">State inference in neural PDE surrogates</a></h3>
-          <p>Nonlocal reconstruction of latent physical variables from partial and spatially coarsened observations.</p>
+          <h3><a href="/research/#scientific-ml">{fieldInference.title}</a></h3>
+          <p>{fieldInference.summary}</p>
         </div>
       </article>
 

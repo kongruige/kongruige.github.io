@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { flowControl, fieldInference, tmlrVenue, tmlrStatus } from '../data/research';
 import PageIntro from '../components/PageIntro.astro';
 import Icon from '../components/Icon.astro';
 import { links } from '../data/site';
@@ -22,11 +23,13 @@ import { links } from '../data/site';
     <div class="shell">
       <div class="project-header">
         <div>
-          <p class="eyebrow">Current work, manuscript in preparation</p>
-          <h2>Audited surrogate gradients for reliable model-based flow control</h2>
+          <p class="eyebrow">{tmlrStatus}</p>
+          <h2>{flowControl.title}</h2>
         </div>
         <p class="project-collab">With <a href={links.fresca} target="_blank" rel="noreferrer">Stefania Fresca</a><br />University of Washington</p>
       </div>
+
+      <p class="pub-summary">Workshop version: {flowControl.workshopStatus} to the {flowControl.workshopVenue}. Journal manuscript in preparation for {tmlrVenue}.</p>
 
       <div class="project-body-grid">
         <div class="project-statement">
@@ -35,7 +38,7 @@ import { links } from '../data/site';
         </div>
         <div class="prose">
           <p>Neural surrogates can reduce the cost of trajectory optimization, but controller design depends on derivatives with respect to the action. These derivatives can be wrong even when one-step state errors are small.</p>
-          <p>I compare automatic-differentiation gradients from the surrogate with paired finite-difference sensitivities from direct numerical simulation. I then distill a compact feedback law, refine it through the surrogate, and evaluate it in the original solver.</p>
+          <p>I compare automatic-differentiation gradients from the surrogate with central finite-difference sensitivities from a high-fidelity solver on held-out states. A compact feedback law fitted to the measured gradient field initializes a neural policy, and an anchor penalty keeps optimization close to that law. Controllers are evaluated in the original solver across four test cases.</p>
         </div>
       </div>
 
@@ -47,8 +50,8 @@ import { links } from '../data/site';
       <div class="method-steps" aria-label="Research workflow">
         <div><span>01</span><h4>Perturb</h4><p>Estimate action sensitivities with paired finite-difference DNS trajectories.</p></div>
         <div><span>02</span><h4>Audit</h4><p>Compare gradient sign, direction, and magnitude across relevant horizons.</p></div>
-        <div><span>03</span><h4>Distill</h4><p>Extract an interpretable feedback law from the audited gradient structure.</p></div>
-        <div><span>04</span><h4>Refine</h4><p>Optimize through the differentiable surrogate within the supported regime.</p></div>
+        <div><span>03</span><h4>Distill</h4><p>Fit a compact feedback law to the measured high-fidelity gradient field.</p></div>
+        <div><span>04</span><h4>Refine</h4><p>Initialize a neural policy from the feedback law and keep it close with an anchor penalty.</p></div>
         <div><span>05</span><h4>Validate</h4><p>Evaluate closed-loop performance and falsification controls in DNS.</p></div>
       </div>
 
@@ -66,7 +69,7 @@ import { links } from '../data/site';
 
       <div class="project-note">
         <span class="note-label">Research principle</span>
-        <p>Local Jacobian fidelity and long-horizon rollout stability are distinct properties. I evaluate them separately because they support different uses of a surrogate.</p>
+        <p>Prediction accuracy, action-gradient fidelity, and closed-loop performance are distinct properties. An audit is local to the sampled states and actions, so gradients must also be measured around the actions the deployed controller applies.</p>
       </div>
     </div>
   </article>
@@ -75,14 +78,14 @@ import { links } from '../data/site';
     <div class="shell topic-layout">
       <div class="topic-index">02</div>
       <div class="topic-title">
-        <p class="eyebrow">Scientific machine learning</p>
-        <h2>Inference and surrogate modeling for physical systems</h2>
+        <p class="eyebrow">{tmlrStatus}</p>
+        <h2>{fieldInference.title}</h2>
       </div>
       <div class="topic-copy prose">
-        <p>At Cambridge, I studied nonlocal state inference in neural PDE surrogates, including the reconstruction of latent physical variables from partial and spatially coarsened observations.</p>
-        <p>I now work with neural operators, reduced-order representations, and physics-informed learning to connect high-dimensional simulation with estimation and control.</p>
+        <p>When can a longer sensor history compensate for a smaller spatial observation window? I study this trade-off through exact Gaussian conditioning and learned local models on a forced linear field, viscous Burgers flow, and the chaotic Kuramoto–Sivashinsky equation.</p>
+        <p>Noisy or sparse observations alone do not force a predictor to use distant sensors: spatial correlation in the underlying field matters. How much history can replace spatial context depends on the window size, sensor spacing, transport, and forecast lead time. In the tested Kuramoto–Sivashinsky regimes, history becomes more useful at longer lead times for windows up to one correlation length, a pattern absent from the tested Burgers regimes.</p>
         <ul class="inline-topics">
-          <li>Neural operators</li><li>PDE surrogates</li><li>Representation learning</li><li>Model reduction</li>
+          <li>Partial observations</li><li>Temporal memory</li><li>Spatial context</li><li>PDE forecasting</li>
         </ul>
       </div>
     </div>

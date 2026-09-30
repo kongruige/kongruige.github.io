@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { flowControl, fieldInference, tmlrVenue, tmlrStatus } from '../data/research';
 import PageIntro from '../components/PageIntro.astro';
 import Icon from '../components/Icon.astro';
 import { links } from '../data/site';
@@ -10,17 +11,32 @@ import { links } from '../data/site';
 
   <section class="publication-list shell">
     <div class="publication-group">
-      <div class="publication-group-label"><span>2026</span><span>Manuscript in preparation</span></div>
+      <div class="publication-group-label"><span>{flowControl.year}</span><span>Accepted workshop paper</span></div>
       <article class="publication-row">
-        <div class="pub-type">Manuscript</div>
+        <div class="pub-type">{flowControl.workshopVenue}</div>
         <div>
-          <h2>Audited Surrogate Gradients for Reliable Model-Based Flow Control</h2>
+          <h2>{flowControl.title}</h2>
           <p class="authors"><strong>Ruige Kong</strong>, Stefania Fresca</p>
-          <p class="pub-summary">Audits automatic-differentiation gradients from neural flow surrogates against finite-difference sensitivities from direct numerical simulation, then tests distilled and optimized feedback laws in the original solver.</p>
-          <div class="pub-status"><span class="status-dot"></span> Manuscript in preparation</div>
+          <p class="pub-summary">{flowControl.summary}</p>
+          <div class="pub-status"><span class="status-dot"></span> {flowControl.workshopStatus} · {flowControl.workshopVenue}</div>
         </div>
       </article>
     </div>
+
+    {[flowControl, fieldInference].map((paper) => (
+      <div class="publication-group">
+        <div class="publication-group-label"><span>{paper.year}</span><span>Manuscript in preparation</span></div>
+        <article class="publication-row">
+          <div class="pub-type">{tmlrVenue}</div>
+          <div>
+            <h2>{paper.title}</h2>
+            {paper === flowControl && <p class="authors"><strong>Ruige Kong</strong>, Stefania Fresca</p>}
+            <p class="pub-summary">{paper.summary}</p>
+            <div class="pub-status"><span class="status-dot"></span> {tmlrStatus}</div>
+          </div>
+        </article>
+      </div>
+    ))}
 
     <div class="publication-group">
       <div class="publication-group-label"><span>2025</span><span>Journal article</span></div>
