@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { flowControl, fieldInference, tmlrVenue, tmlrStatus } from '../data/research';
+import { flowControl, fieldInference, tmlrStatus } from '../data/research';
 import Icon from '../components/Icon.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { links, interests } from '../data/site';
@@ -86,12 +86,16 @@ const awards = [
         </article>
 
         <article class="scan-publication">
-          <div class="scan-publication-year"><strong>{fieldInference.year}</strong><span>In preparation</span></div>
+          <div class="scan-publication-year"><strong>{fieldInference.year}</strong><span>Submitted</span></div>
           <div>
-            <p class="record-kicker">{tmlrVenue}</p>
+            <p class="record-kicker">{fieldInference.venue}</p>
             <h3>{fieldInference.title}</h3>
+            <p class="authors"><strong>Ruige Kong</strong></p>
             <p>{fieldInference.summary}</p>
-            <p class="pub-summary">{tmlrStatus}.</p>
+            <p class="pub-summary">{fieldInference.status}.</p>
+            <div class="pub-links">
+              <a href={fieldInference.arxiv} target="_blank" rel="noreferrer">arXiv version <Icon name="external" size={14} /></a>
+            </div>
           </div>
         </article>
 

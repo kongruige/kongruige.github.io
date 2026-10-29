@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { flowControl, fieldInference, tmlrVenue, tmlrStatus } from '../data/research';
+import { flowControl, fieldInference } from '../data/research';
 import PageIntro from '../components/PageIntro.astro';
 import Icon from '../components/Icon.astro';
 import { links } from '../data/site';
@@ -25,14 +25,18 @@ import { links } from '../data/site';
 
     {[flowControl, fieldInference].map((paper) => (
       <div class="publication-group">
-        <div class="publication-group-label"><span>{paper.year}</span><span>Manuscript in preparation</span></div>
+        <div class="publication-group-label"><span>{paper.year}</span><span>{paper.label}</span></div>
         <article class="publication-row">
-          <div class="pub-type">{tmlrVenue}</div>
+          <div class="pub-type">{paper.venue}</div>
           <div>
             <h2>{paper.title}</h2>
             {paper === flowControl && <p class="authors"><strong>Ruige Kong</strong>, Stefania Fresca</p>}
+            {paper === fieldInference && <p class="authors"><strong>Ruige Kong</strong></p>}
             <p class="pub-summary">{paper.summary}</p>
-            <div class="pub-status"><span class="status-dot"></span> {tmlrStatus}</div>
+            <div class="pub-status"><span class="status-dot"></span> {paper.status}</div>
+            {paper === fieldInference && <div class="pub-links">
+              <a href={fieldInference.arxiv} target="_blank" rel="noreferrer">arXiv version <Icon name="external" size={15} /></a>
+            </div>}
           </div>
         </article>
       </div>

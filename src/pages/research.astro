@@ -78,12 +78,15 @@ import { links } from '../data/site';
     <div class="shell topic-layout">
       <div class="topic-index">02</div>
       <div class="topic-title">
-        <p class="eyebrow">{tmlrStatus}</p>
+        <p class="eyebrow">{fieldInference.status} · {fieldInference.venue}</p>
         <h2>{fieldInference.title}</h2>
       </div>
       <div class="topic-copy prose">
         <p>When can a longer sensor history compensate for a smaller spatial observation window? I study this trade-off through exact Gaussian conditioning and learned local models on a forced linear field, viscous Burgers flow, and the chaotic Kuramoto–Sivashinsky equation.</p>
         <p>Noisy or sparse observations alone do not force a predictor to use distant sensors: spatial correlation in the underlying field matters. How much history can replace spatial context depends on the window size, sensor spacing, transport, and forecast lead time. In the tested Kuramoto–Sivashinsky regimes, history becomes more useful at longer lead times for windows up to one correlation length, a pattern absent from the tested Burgers regimes.</p>
+        <div class="inline-links">
+          <a class="text-link" href={fieldInference.arxiv} target="_blank" rel="noreferrer">arXiv version <Icon name="external" size={16} /></a>
+        </div>
         <ul class="inline-topics">
           <li>Partial observations</li><li>Temporal memory</li><li>Spatial context</li><li>PDE forecasting</li>
         </ul>

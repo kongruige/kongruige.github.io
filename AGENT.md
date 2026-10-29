@@ -24,6 +24,8 @@ As of the owner's September 30, 2026 update:
 - `papers/inference hypothesis research.pdf`: **When Does Memory Substitute for Space in Forecasting Partially Observed Fields?**; preparing a submission to TMLR.
 - `papers/mbrl workshop.pdf`: **Audited Surrogate Gradients for Efficient Model-Based Flow Control**; accepted to the Sim2Science workshop at NeurIPS 2026, per the owner.
 
+October 29, 2026 update: the field-inference paper is now titled **Spatial Context or Memory? Sizing the Inputs of Neural Surrogates for Partially Observed Fields**, authored by Ruige Kong, with preprint https://arxiv.org/abs/2610.12723. The owner confirms submission to the **Learning for Dynamics and Control Conference (L4DC)**, superseding its previous TMLR preparation status. The flow-control statuses above remain unchanged.
+
 The owner's stated status takes precedence over template text such as “Under review” in draft PDFs. TMLR preparation must not become submitted, under review, or accepted without a new update. Workshop acceptance is not a NeurIPS main-conference acceptance or journal acceptance. Keep the two versions distinct. The supplied PDFs are anonymous; do not infer new author lists. Existing flow-control author information comes from the previous site, not those PDFs.
 
 Use full manuscript titles, not internal shorthand such as “mbrl.” Base scientific summaries on the manuscripts and retain qualifications on findings. Do not invent publication URLs, dates, DOIs, or results. Do not copy anonymous working drafts into `public/` without an explicit request to publish them. `pdftotext -layout 'papers/filename.pdf' -` can read the papers locally.
